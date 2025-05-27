@@ -60,24 +60,25 @@ const SlideTypeABox: React.FC<SlideTypeABoxProps> = ({
         isOutOfStock ? handleError() : handleClick();
         !isOutOfStock && handleOpenModal?.();
       }}
-      className={`relative cursor-pointer  bg-white w-[170px] h-[170px] xs:w-[130px] xs:h-[130px] sm:w-[170px] sm:h-[170px] rounded-xl p-[10px] bg-no-repeat bg-cover bg-center flex items-center justify-center transition-all ${
+      className={`relative cursor-pointer  bg-white w-full min-h-[80%] xs:w-full  sm:w-full  rounded-xl  bg-no-repeat  bg-center flex items-center justify-center transition-all ${
         isOutOfStock ? "opacity-40 " : ""
-      }`}
-      style={{ backgroundImage: `url(${marco})` }}
+      }, ${!loading && "p-[10px]"}`}
+      style={{ backgroundImage: `url(${marco})`, backgroundSize: "100% 100%" }}
     >
-      <div className="container w-full h-full rounded-sm overflow-hidden flex items-center justify-center">
-        <div className="infoProduct uppercase flex-col flex items-center justify-center gap-2 w-full">
+      <div className="container w-full h-full rounded-sm overflow-hidden flex items-center justify-center flex-col">
+        <div className="infoProduct uppercase flex-col flex items-center justify-center gap-2 w-full overflow-hidden">
           {loading ? (
             <LoaderImageDetail />
           ) : (
             <>
-              <p className="text-center font-bold text-[14px] xs:text-[11px] leading-4 min-h-[32px] flex items-center justify-center truncate-2-lines">
+              <p className="truncate-2-lines text-center  font-bold text-[11px]  min-h-[32px]   ">
                 {product.nameProduct}
               </p>
+
               <img
                 src={imagen || `/fallback/url/${product.imgProduct}`}
                 alt={product.nameProduct}
-                className="w-[100px] xs:w-[70px] h-auto object-contain rounded-md"
+                className="w-[50%]  h-auto object-contain rounded-md"
               />
             </>
           )}

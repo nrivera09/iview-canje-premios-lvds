@@ -8,6 +8,7 @@ export const useStockSignalR = (onStockUpdate: (message: any) => void) => {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl(`${process.env.REACT_APP_ACITY_DOMAIN}/hub/stock`, {
         transport: signalR.HttpTransportType.LongPolling,
+        withCredentials: true, // ✅ necesario para CORS con cookies/sesiones
       })
 
       .configureLogging(signalR.LogLevel.Information)

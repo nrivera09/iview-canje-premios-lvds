@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import SlideTypeBBox from "./SlideTypeBBox";
+import React, { useEffect, useRef, useState } from "react";
+import SlideTypeABox from "./SlideTypeBBox";
 import { usePrizesStore } from "@/shared/store/prizesStore";
-import SlideTypeBDetail from "./SlideTypeBDetail";
+import SlideTypeADetail from "./SlideTypeBDetail";
 import { SlideTypeBGridProps } from "../../types/prize.types";
+import imgPlayBack from "@/shared/assets/img/64.png";
+import imgPlayNext from "@/shared/assets/img/61.png";
 
 const SlideTypeBGrid: React.FC<SlideTypeBGridProps> = ({
   products,
@@ -13,57 +15,129 @@ const SlideTypeBGrid: React.FC<SlideTypeBGridProps> = ({
     (state) => state.setOpenPrizeDetail
   );
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const visibleProducts = products.slice(0, 4);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const [itemWidth, setItemWidth] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const visibleProducts = products; // mostrar todos, pero se verán de 3 en 3 por scroll
 
   const handleOpenModal = (index: number) => {
     setSelectedIndex(index);
     setOpenPrizeDetail(true);
-    //setOpenModal(true);
   };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: -itemWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: itemWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (scrollRef.current) {
+        const fullWidth = scrollRef.current.clientWidth;
+        setItemWidth(fullWidth / 3); // divide en 3 columnas exactas
+      }
+    };
+
+    updateWidth(); // calcular al cargar
+
+    window.addEventListener("resize", updateWidth); // recalcular al redimensionar
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (scrollRef.current) {
+        const el = scrollRef.current;
+        setCanScrollLeft(el.scrollLeft > 0);
+        setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1); // usa -1 por seguridad
+      }
+    };
+
+    checkScroll(); // inicial
+
+    // ⏳ Esperar a que termine de montar (productos/imágenes)
+    const timeout = setTimeout(() => {
+      checkScroll();
+    }, 500); // puedes ajustar el delay según tu carga
+
+    const el = scrollRef.current;
+    el?.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+
+    return () => {
+      clearTimeout(timeout);
+      el?.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, []);
 
   return (
     <>
-      <div
-        data-slide={details.id}
-        className="contenido flex flex-1 items-center justify-center w-full"
-      >
-        <div className="container max-w-[420px] xs:max-w-[340px] h-auto grid grid-cols-2 gap-x-0 gap-y-3 xs:gap-x-0 xs:gap-y-3 sm:gap-x-0 sm:gap-y-4 place-items-center">
-          <div>Lorem.</div>
-          <div className="flex flex-col">
-            <div className="relative   w-[160px] h-[130px] xs:w-[130px] xs:h-[130px] sm:w-[160px] sm:h-[130px] rounded-xl p-[10px] bg-no-repeat bg-cover bg-center flex items-center justify-center transition-all flex-col ">
-              <div className="flex flex-1 w-full justify-center items-center flex-col ">
-                <p
-                  className="flex flex-col relative top-[12px] font-bold items-center text-white"
-                  style={{ lineHeight: "25px" }}
-                >
-                  <span className="text-[45px]">200</span>
-                  <span className="uppercase text-[20px]">puntos</span>
-                </p>
-              </div>
-              <p
-                className="text-white h-[20px] text-[9px] sm:text-[11px] text-center  font-light"
-                style={{ lineHeight: "13px" }}
+      <div className="flex flex-row flex-1">
+        <div className="min-w-[50px]"></div>
+        <div
+          data-slide={details.id}
+          className="flex-1 w-full overflow-hidden items-center justify-center"
+        >
+          <div
+            ref={scrollRef}
+            className="flex items-center justify-start overflow-x-auto scrollbar-hidden scroll-smooth h-full"
+          >
+            {visibleProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className="flex-shrink-0 px-2"
+                style={{ width: itemWidth }}
               >
-                Acumula y canjea tu regalo <br /> de 8 AM a 4 AM (del lunes){" "}
-              </p>
-              <div className="w-full absolute top-[-6px] z-10">
-                <p className="bg-gradient-to-r from-[#b77b2e] via-[#ffdd55] to-[#f8f852] overflow-hidden rounded-full uppercase font-bold text-[11px] sm:text-[15px] text-white text-center">
-                  <span className="relative top-[2px]">11 de MAYO</span>
-                </p>
+                <SlideTypeABox
+                  product={product}
+                  handleOpenModal={() => handleOpenModal(index)}
+                />
               </div>
-            </div>
+            ))}
           </div>
-          {visibleProducts.map((product, index) => (
-            <SlideTypeBBox
-              key={product.id}
-              product={product}
-              handleOpenModal={() => handleOpenModal(index)}
-            />
-          ))}
         </div>
+        <div className="min-w-[50px]"></div>
       </div>
+      <div className="scrolleableButtons pointer-events-none">
+        <button
+          onClick={scrollLeft}
+          disabled={!canScrollLeft}
+          className={`absolute left-0 top-1/2 mt-[4rem] transform -translate-y-1/2 ml-2 transition-opacity duration-300 pointer-events-auto ${
+            !canScrollLeft ? "hidden" : ""
+          }`}
+        >
+          <img src={imgPlayBack} alt="Anterior" className="w-10" />
+        </button>
+        <button
+          onClick={scrollRight}
+          disabled={!canScrollRight}
+          className={`absolute right-0 top-1/2 mt-[4rem] transform -translate-y-1/2 mr-2 transition-opacity duration-300 pointer-events-auto ${
+            !canScrollRight ? "hidden" : ""
+          }`}
+        >
+          <img src={imgPlayNext} alt="Siguiente" className="w-10" />
+        </button>
+      </div>
+
       {openPrizeDetail && selectedIndex !== null && (
-        <SlideTypeBDetail
+        <SlideTypeADetail
           products={visibleProducts}
           details={details}
           currentIndex={selectedIndex}

@@ -5,7 +5,6 @@ import fireworks from "@/shared/assets/lotties/confetti.json";
 import { usePrizesStore } from "@/shared/store/prizesStore";
 import { MdOutlineRedeem } from "react-icons/md";
 import { useSoundEffect } from "@/shared/hooks/useSoundEffect";
-import { useStockSignalR } from "@/shared/hooks/useStockSignalR";
 
 const SlideTypeADetailConfirmation = () => {
   const { playSound } = useSoundEffect();

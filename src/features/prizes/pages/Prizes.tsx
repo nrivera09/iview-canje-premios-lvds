@@ -4,6 +4,7 @@ import { useSoundEffect } from "@/shared/hooks/useSoundEffect";
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
 import { usePrizesStore } from "@/shared/store/prizesStore";
 import { PrizeGroup } from "@/features/shared/features/types/types";
+import { FaUndo } from "react-icons/fa";
 
 const Prizes: React.FC = () => {
   const { playSound } = useSoundEffect();
@@ -42,34 +43,41 @@ const Prizes: React.FC = () => {
   return (
     <section className="w-full h-[100dvh] bg-no-repeat bg-cover mx-auto flex flex-col overflow-hidden">
       <SlideRenderer key={currentSlide.type} slide={currentSlide} />
-
-      <nav className="nav flex min-h-[70px] items-center justify-center gap-2">
+      <nav className="nav flex min-h-[0px] items-center justify-center gap-2">
         <button
           onMouseEnter={handleHover}
           disabled={currentIndex === 0}
           onClick={handlePrev}
-          className="bg-blue-950 w-[70px] h-[50px] sm:h-[55px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{
+            borderLeft: "0",
+            borderTopLeftRadius: "0",
+            borderBottomLeftRadius: "0",
+          }}
+          className="bg-blue-950 w-[43px] h-[70px] sm:h-[70px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 left-0 -mt-8"
         >
-          <RiArrowDropLeftLine className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] text-white" />
+          <RiArrowDropLeftLine className="min-h-[100px] min-w-[100px] text-white" />
         </button>
 
         <button
           onMouseEnter={handleHover}
           onClick={() => playSound("button")}
-          className="bg-blue-950 h-[50px] sm:h-[55px] px-5 flex items-center justify-center border border-white rounded-md"
+          className="font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[40px] sm:h-[40px] w-[40px] sm:w-[40px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
         >
-          <span className="text-[25px] sm:text-[30px] font-bold text-white">
-            VOLVER
-          </span>
+          <FaUndo className="text-white mx-auto font-bold text-[22px]" />
         </button>
 
         <button
           onMouseEnter={handleHover}
           disabled={currentIndex === prizeGroups.length - 1}
           onClick={handleNext}
-          className="bg-blue-950 w-[70px] h-[50px] sm:h-[55px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{
+            borderRight: "0",
+            borderTopRightRadius: "0",
+            borderBottomRightRadius: "0",
+          }}
+          className="bg-blue-950 w-[43px] h-[70px] sm:h-[70px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 right-0 -mt-8"
         >
-          <RiArrowDropRightLine className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] text-white" />
+          <RiArrowDropRightLine className="min-h-[100px] min-w-[100px] text-white" />
         </button>
       </nav>
     </section>

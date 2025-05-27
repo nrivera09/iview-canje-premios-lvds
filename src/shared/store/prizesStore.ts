@@ -8,7 +8,6 @@ import {
   PrizeGroup,
 } from "@/features/shared/features/types/types";
 import { PrizesStore } from "@/features/prizes/types/prize.types";
-import { useStockSignalR } from "@/shared/hooks/useStockSignalR";
 
 export const usePrizesStore = create<PrizesStore>()(
   persist(
