@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-user-drag: none;
+  user-drag: none;
+  touch-action: manipulation;
+}
+
+@layer components {
+  .container {
+    @apply px-2;
+  }
+}
+
+@layer base {
+  * {
+    -webkit-user-drag: none;
+    user-drag: none;
+    touch-action: manipulation;
+  }
+}
+
+@font-face {
+  font-family: "TTNormsPro";
+  src: url("../assets/fonts/TTNormsPro/OTF/TTNormsPro-Normal.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTNormsPro";
+  src: url("../assets/fonts/TTNormsPro/OTF/TTNormsPro-Bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTNormsPro";
+  src: url("../assets/fonts/TTNormsPro/OTF/TTNormsPro-Light.otf")
+    format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  @apply font-sans;
+  font-size: 16px;
+  user-select: none; /* evita seleccionar texto */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE/Edge */
+  -webkit-touch-callout: none; /* iOS: desactiva menú táctil al mantener presionado */
+  -webkit-user-drag: none; /* evita arrastrar imagen/texto en Safari/Chrome */
+  -khtml-user-select: none; /* para compatibilidad antigua */
+}
+
+@media (max-width: 667px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .font-mobile-12px {
+    font-size: 12px;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.truncate-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* número de líneas máximas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
