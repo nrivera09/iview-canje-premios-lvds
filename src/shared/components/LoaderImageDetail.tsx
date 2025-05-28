@@ -12,7 +12,7 @@ const LoaderImageDetail = () => {
     },
   };
   return (
-    <div className="flex items-center justify-center h-full flex-col w-full min-h-[70%]">
+    <div className="flex items-center justify-center h-full flex-col w-full min-h-[40%]">
       <div className="overflow-hidden ">
         <Lottie
           options={defaultOptions}

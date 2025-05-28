@@ -53,7 +53,7 @@ const Prizes: React.FC = () => {
             borderTopLeftRadius: "0",
             borderBottomLeftRadius: "0",
           }}
-          className="bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 left-0 -mt-7"
+          className="z-50 bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 left-0 -mt-7"
         >
           <RiArrowDropLeftLine className="min-h-[70px] min-w-[70px] text-white" />
         </button>
@@ -61,7 +61,7 @@ const Prizes: React.FC = () => {
         <button
           onMouseEnter={handleHover}
           onClick={() => playSound("button")}
-          className="font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[30px] sm:h-[30px] w-[30px] sm:w-[30px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
+          className="z-50 font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[30px] sm:h-[30px] w-[30px] sm:w-[30px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
         >
           <FaUndo className="text-white mx-auto font-bold text-[15px]" />
         </button>
@@ -75,7 +75,7 @@ const Prizes: React.FC = () => {
             borderTopRightRadius: "0",
             borderBottomRightRadius: "0",
           }}
-          className="bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 right-0 -mt-7"
+          className="z-50 bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 right-0 -mt-7"
         >
           <RiArrowDropRightLine className="min-h-[70px] min-w-[70px] text-white" />
         </button>
