@@ -64,8 +64,12 @@ const SlideTypeAGrid: React.FC<SlideTypeAGridProps> = ({
     const checkScroll = () => {
       if (scrollRef.current) {
         const el = scrollRef.current;
-        setCanScrollLeft(el.scrollLeft > 0);
-        setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1); // usa -1 por seguridad
+        const isAtStart = el.scrollLeft <= 0;
+        const isAtEnd =
+          Math.abs(el.scrollWidth - el.scrollLeft - el.clientWidth) < 1;
+
+        setCanScrollLeft(!isAtStart);
+        setCanScrollRight(!isAtEnd);
       }
     };
 
@@ -102,8 +106,8 @@ const SlideTypeAGrid: React.FC<SlideTypeAGridProps> = ({
             {visibleProducts.map((product, index) => (
               <div
                 key={product.id}
-                className="flex-shrink-0 px-2"
-                style={{ width: itemWidth }}
+                className="flex-shrink-0"
+                style={{ width: itemWidth, paddingInline: 8 }}
               >
                 <SlideTypeABox
                   product={product}
@@ -119,20 +123,20 @@ const SlideTypeAGrid: React.FC<SlideTypeAGridProps> = ({
         <button
           onClick={scrollLeft}
           disabled={!canScrollLeft}
-          className={`absolute left-0 top-1/2 mt-[4rem] transform -translate-y-1/2 ml-2 transition-opacity duration-300 pointer-events-auto ${
+          className={`absolute left-0 top-1/2 mt-[2.5rem] transform -translate-y-1/2 ml-2 transition-opacity duration-300 pointer-events-auto ${
             !canScrollLeft ? "hidden" : ""
           }`}
         >
-          <img src={imgPlayBack} alt="Anterior" className="w-10" />
+          <img src={imgPlayBack} alt="Anterior" className="w-7" />
         </button>
         <button
           onClick={scrollRight}
           disabled={!canScrollRight}
-          className={`absolute right-0 top-1/2 mt-[4rem] transform -translate-y-1/2 mr-2 transition-opacity duration-300 pointer-events-auto ${
+          className={`absolute right-0 top-1/2 mt-[2.5rem] transform -translate-y-1/2 mr-2 transition-opacity duration-300 pointer-events-auto ${
             !canScrollRight ? "hidden" : ""
           }`}
         >
-          <img src={imgPlayNext} alt="Siguiente" className="w-10" />
+          <img src={imgPlayNext} alt="Siguiente" className="w-7" />
         </button>
       </div>
 

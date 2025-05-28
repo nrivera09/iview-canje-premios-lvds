@@ -53,17 +53,17 @@ const Prizes: React.FC = () => {
             borderTopLeftRadius: "0",
             borderBottomLeftRadius: "0",
           }}
-          className="bg-blue-950 w-[43px] h-[70px] sm:h-[70px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 left-0 -mt-8"
+          className="bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 left-0 -mt-7"
         >
-          <RiArrowDropLeftLine className="min-h-[100px] min-w-[100px] text-white" />
+          <RiArrowDropLeftLine className="min-h-[70px] min-w-[70px] text-white" />
         </button>
 
         <button
           onMouseEnter={handleHover}
           onClick={() => playSound("button")}
-          className="font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[40px] sm:h-[40px] w-[40px] sm:w-[40px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
+          className="font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[30px] sm:h-[30px] w-[30px] sm:w-[30px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
         >
-          <FaUndo className="text-white mx-auto font-bold text-[22px]" />
+          <FaUndo className="text-white mx-auto font-bold text-[15px]" />
         </button>
 
         <button
@@ -75,9 +75,9 @@ const Prizes: React.FC = () => {
             borderTopRightRadius: "0",
             borderBottomRightRadius: "0",
           }}
-          className="bg-blue-950 w-[43px] h-[70px] sm:h-[70px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 right-0 -mt-8"
+          className="bg-blue-950 w-[35px] h-[50px] sm:h-[50px] flex items-center justify-center border border-gray-300 rounded-md overflow-hidden disabled:opacity-40 disabled:cursor-not-allowed absolute top-1/2 right-0 -mt-7"
         >
-          <RiArrowDropRightLine className="min-h-[100px] min-w-[100px] text-white" />
+          <RiArrowDropRightLine className="min-h-[70px] min-w-[70px] text-white" />
         </button>
       </nav>
     </section>
