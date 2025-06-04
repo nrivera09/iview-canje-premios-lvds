@@ -21,7 +21,6 @@ export const useAppData = (tarjeta: string) => {
       setOpenPrizeDetail(false);
       setOpenPrizeRedeem(false);
       setCardId("0");
-      setNroAsset(0);
       setNroPoint(0);
       setCanExchange(null);
       await Promise.all([fetchPremios(tarjeta)]);

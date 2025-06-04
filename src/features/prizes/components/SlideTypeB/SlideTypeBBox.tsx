@@ -94,7 +94,7 @@ const SlideTypeABox: React.FC<SlideTypeABoxProps> = ({
         )}
       </div>
 
-      <p className="text-center font-bold text-[10px] xs:text-[11px] leading-4 min-h-[32px] flex items-center justify-center truncate-2-lines w-[100px]  xs:w-[100px]  sm:w-[100px] text-white pt-2 ">
+      <p className="w-full text-center font-bold text-[10px] xs:text-[11px] leading-4 min-h-[32px] flex items-center justify-center truncate-2-lines    text-white pt-2 ">
         <div className="container leading-0">{product.nameProduct}</div>
       </p>
     </div>

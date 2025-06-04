@@ -8,7 +8,6 @@ import {
   PrizeGroup,
 } from "@/features/shared/features/types/types";
 import { PrizesStore } from "@/features/prizes/types/prize.types";
-import { IView } from "../types/views";
 
 export const usePrizesStore = create<PrizesStore>()(
   persist(
@@ -136,6 +135,7 @@ export const usePrizesStore = create<PrizesStore>()(
           cardId: "0",
           nroPoint: 0,
           canExchange: null,
+          nroAsset: 0,
           view: "",
         } as PrizesStore;
       },

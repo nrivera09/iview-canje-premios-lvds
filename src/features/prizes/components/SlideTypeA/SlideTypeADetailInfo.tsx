@@ -50,7 +50,7 @@ const SlideTypeADetailInfo: React.FC<SlideTypeADetailInfoProps> = ({
       //setLoadingImg(false);
       setTimeout(() => {
         setLoadingImg(false);
-      }, 999999);
+      }, 1000);
     });
   }, [product.imgProduct, fetchImagen]);
 
