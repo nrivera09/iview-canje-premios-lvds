@@ -88,9 +88,11 @@ export interface PrizesStore {
   nroAsset: number;
   nroPoint: number;
   canExchange: any;
+  view: string;
   setCanExchange: (value: any) => void;
   setTarjetaId: (value: string) => void;
   setCardId: (value: string) => void;
   setNroAsset: (value: number) => void;
   setNroPoint: (value: number) => void;
+  setView: (value: string) => void;
 }

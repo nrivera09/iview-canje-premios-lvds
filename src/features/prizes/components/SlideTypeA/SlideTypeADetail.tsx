@@ -126,7 +126,7 @@ const SlideTypeADetail: FC<SlideTypeADetailProps> = ({
         onMouseEnter={handleHover}
         onClick={() => {
           playSound("button");
-          handleOpenModal();
+          setOpenPrizeDetail(false);
         }}
         src={imgHome}
         alt=""

@@ -61,7 +61,7 @@ const SlideTypeABox: React.FC<SlideTypeABoxProps> = ({
           isOutOfStock ? handleError() : handleClick();
           !isOutOfStock && handleError();
         }}
-        className={`relative cursor-pointer  bg-white/30 backdrop-blur-sm w-[160px] h-[130px] xs:w-[130px] xs:h-[130px] sm:w-[160px] sm:h-[130px] rounded-xl p-[10px] bg-no-repeat bg-cover bg-center flex items-center justify-center transition-all ${
+        className={`relative cursor-pointer  bg-white/30 backdrop-blur-sm min-h-[70%] xs:w-full  sm:w-full rounded-xl p-[10px] bg-no-repeat bg-cover bg-center flex items-center justify-center transition-all ${
           isOutOfStock ? "opacity-40 " : ""
         }`}
         style={{

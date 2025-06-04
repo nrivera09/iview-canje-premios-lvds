@@ -6,6 +6,11 @@ import { IoIosClose } from "react-icons/io";
 
 const HackIview: FC<HackIviewProps> = ({ hideIviewHack }) => {
   const { playSound } = useSoundEffect();
+
+  const tarjetaId = usePrizesStore((s) => s.tarjetaId);
+  const nroAsset = usePrizesStore((s) => s.nroAsset);
+  const view = usePrizesStore((s) => s.view);
+
   const setCardId = usePrizesStore((state) => state.setCardId);
   const fetchPremios = usePrizesStore((state) => state.fetchPremios);
   const setNroAsset = usePrizesStore((state) => state.setNroAsset);
@@ -14,9 +19,9 @@ const HackIview: FC<HackIviewProps> = ({ hideIviewHack }) => {
 
   const canExchange = usePrizesStore((state) => state.canExchange);
 
-  const [tarjeta, setTarjeta] = useState("100007777");
-  const [asset, setAsset] = useState("12345");
-  const [puntos, setPuntos] = useState("200");
+  const [tarjeta, setTarjeta] = useState(tarjetaId);
+  const [asset, setAsset] = useState(nroAsset);
+  const [puntos, setPuntos] = useState(view);
   const [getforzarCanje, setGetForzarCanje] = useState<any>(canExchange);
 
   const handleHover = () => {
@@ -25,13 +30,15 @@ const HackIview: FC<HackIviewProps> = ({ hideIviewHack }) => {
 
   const handleUpdate = async () => {
     setCardId(tarjeta);
-    setNroAsset(Number(asset));
+    setNroAsset(asset);
     setNroPoint(Number(puntos));
     setCanExchange(getforzarCanje);
 
     await fetchPremios(tarjeta);
     hideIviewHack();
   };
+
+  
 
   return (
     <div className="w-full flex items-center justify-center  h-[100dvh] top-0 left-0 fixed bg-black/30 backdrop-blur-sm  z-50">
@@ -52,7 +59,7 @@ const HackIview: FC<HackIviewProps> = ({ hideIviewHack }) => {
               <input
                 type="text"
                 value={asset}
-                onChange={(e) => setAsset(e.target.value)}
+                onChange={(e) => setAsset(Number(e.target.value))}
                 className="border bg-gray-200 p-1 rounded text-[12px] w-full"
               />
             </div>
@@ -60,7 +67,6 @@ const HackIview: FC<HackIviewProps> = ({ hideIviewHack }) => {
               <label className="text-[12px]">Puntaje:</label>
               <input
                 type="text"
-                value={puntos}
                 onChange={(e) => setPuntos(e.target.value)}
                 className="border bg-gray-200 p-1 rounded text-[12px] w-full"
               />

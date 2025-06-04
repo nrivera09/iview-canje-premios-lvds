@@ -55,27 +55,27 @@ const SlideTypeADetailConfirmation = () => {
     <>
       <div className="fixed flex items-center justify-center top-0 left-0 w-full h-[100dvh] shadow-xl   z-50 bg-black/80 backdrop-blur-sm">
         <div className="container ">
-          <div className="bg-white rounded-xl shadow-md w-[500px] max-w-full px-4 py-6 mx-auto">
+          <div className="bg-white rounded-xl shadow-md w-[500px] max-w-full p-2 mx-auto">
             <div className="container">
-              <div className="overflow-hidden flex items-center justify-center w-[270px] mx-auto h-[50px]">
-                <div className="absolute mt-[-60px] left-0 w-full">
+              <div className="overflow-hidden flex items-center justify-center w-[200px] mx-auto h-[0px]">
+                <div className="absolute mt-[-60px] left-0 w-full !hidden">
                   <Lottie options={defaultOptions} height={300} width={270} />
                 </div>
               </div>
-              <p className="font-bold text-[25px] sm:text-[32px] mb-5 leading-7 sm:leading-10 text-black">
+              <p className="font-bold text-[15px]mb-5 leading-7 sm:leading-10 text-black">
                 ¡SE REALIZÓ SU CANJE EXITOSAMENTE!
               </p>
-              <span className="text-black block mb-5   text-[15px] leading-5 sm:text-[20px] sm:leading-5 font-normal ">
+              <span className="text-black block mb-2   text-[13px] leading-5  sm:leading-5 font-normal ">
                 Su regalo ha sido reservado para usted en Counter, no olvide
                 recogerlo antes de reitrarse ¡Gracias!
               </span>
               <button
                 onMouseEnter={handleHover}
                 onClick={handleGoBack}
-                className="mx-auto bg-blue-950 h-[50px] sm:h-[55px] px-5 flex items-center justify-center border border-white rounded-md "
+                className="mx-auto bg-blue-950 h-[35px] px-5 flex items-center justify-center border border-white rounded-md "
               >
-                <p className="gap-3 text-[20px] flex items-center justify-center sm:text-[20px] font-bold text-white">
-                  <MdOutlineRedeem className="text-[35px]" />
+                <p className="gap-3 text-[11px] flex items-center justify-center  font-bold text-white">
+                  <MdOutlineRedeem className="text-[20px]" />
 
                   <span>IR AL INICIO</span>
                 </p>

@@ -7,23 +7,22 @@ import HackIview from "./shared/components/HackIview";
 import { useSoundEffect } from "./shared/hooks/useSoundEffect";
 import { useStockSignalR } from "./shared/hooks/useStockSignalR";
 import { usePrizesStore } from "./shared/store/prizesStore";
+import { useURLParams } from "./shared/hooks/useURLParams";
 
 const App: React.FC = () => {
+  useURLParams();
+
   const isDevEnv = useIsDevEnv();
   const fetchPremios = usePrizesStore((state) => state.fetchPremios);
-  const setTarjetaId = usePrizesStore((state) => state.setTarjetaId);
-
-  const [tarjeta, setTarjetaLocal] = useState("100007777");
-  setTarjetaId(tarjeta);
-  const [showInput, setShowInput] = useState(false);
-
+  const tarjetaId = usePrizesStore((state) => state.tarjetaId);
   const { playSound } = useSoundEffect();
 
-  const ready = useAppData(tarjeta);
+  const [showInput, setShowInput] = useState(false);
+  const ready = useAppData(tarjetaId);
 
   useStockSignalR((data) => {
     console.log("📦 Actualización de stock:", data);
-    fetchPremios(tarjeta);
+    fetchPremios(tarjetaId);
   });
 
   const hideIviewHack = () => {

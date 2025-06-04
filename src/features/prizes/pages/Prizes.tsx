@@ -12,6 +12,10 @@ const Prizes: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prizeGroups, setPrizeGroups] = useState<PrizeGroup[]>([]);
 
+  const setOpenPrizeDetail = usePrizesStore(
+    (state) => state.setOpenPrizeDetail
+  );
+
   useEffect(() => {
     if (premios.length > 0) {
       setPrizeGroups(premios); // Ya viene como PrizeGroup[]
@@ -60,7 +64,10 @@ const Prizes: React.FC = () => {
 
         <button
           onMouseEnter={handleHover}
-          onClick={() => playSound("button")}
+          onClick={() => {
+            playSound("button");
+            setOpenPrizeDetail(false);
+          }}
           className="z-50 font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[30px] sm:h-[30px] w-[30px] sm:w-[30px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
         >
           <FaUndo className="text-white mx-auto font-bold text-[15px]" />
