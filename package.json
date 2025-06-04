@@ -2,6 +2,7 @@
   "name": "casino-ui",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/lvds",
   "dependencies": {
     "@microsoft/signalr": "^8.0.7",
     "@tailwindcss/line-clamp": "^0.4.4",
