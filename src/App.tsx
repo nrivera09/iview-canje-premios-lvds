@@ -8,8 +8,10 @@ import { useSoundEffect } from "./shared/hooks/useSoundEffect";
 import { useStockSignalR } from "./shared/hooks/useStockSignalR";
 import { usePrizesStore } from "./shared/store/prizesStore";
 import { useURLParams } from "./shared/hooks/useURLParams";
+import { useAltenarScripts } from "@/shared/hooks/useAltenarScripts";
 
 const App: React.FC = () => {
+  useAltenarScripts();
   useURLParams();
 
   const isDevEnv = useIsDevEnv();

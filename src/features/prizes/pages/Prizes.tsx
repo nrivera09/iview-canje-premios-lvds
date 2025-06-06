@@ -5,6 +5,7 @@ import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
 import { usePrizesStore } from "@/shared/store/prizesStore";
 import { PrizeGroup } from "@/features/shared/features/types/types";
 import { FaUndo } from "react-icons/fa";
+import { handleCloseClick } from "@/libs/altenarBridge";
 
 const Prizes: React.FC = () => {
   const { playSound } = useSoundEffect();
@@ -66,7 +67,7 @@ const Prizes: React.FC = () => {
           onMouseEnter={handleHover}
           onClick={() => {
             playSound("button");
-            setOpenPrizeDetail(false);
+            handleCloseClick();
           }}
           className="z-50 font-bold text-xl bg-red-600 hover:bg-red-900 p-1 rounded-md overflow-hidden   mx-auto transition-all cursor-pointer hover:shadow-xl h-[30px] sm:h-[30px] w-[30px] sm:w-[30px] items-center justify-center absolute top-0 right-0 mt-1 mr-1"
         >
