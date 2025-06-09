@@ -113,7 +113,7 @@ export const usePrizesStore = create<PrizesStore>()(
       nroAsset: 0,
       nroPoint: 0,
       canExchange: null,
-      view: "DM",
+      view: "LVDS",
       setOpenPrizeDetail: (value) => set({ openPrizeDetail: value }),
       setOpenPrizeRedeem: (value) => set({ openPrizeRedeem: value }),
       setTarjetaId: (value) => set({ tarjetaId: value }),

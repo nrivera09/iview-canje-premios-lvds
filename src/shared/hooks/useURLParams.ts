@@ -15,7 +15,7 @@ export const useURLParams = () => {
     const card = params.get("id") ?? "100007777";
     const assetRaw = params.get("asset") ?? "1103";
     const asset = Number(assetRaw);
-    const view = (params.get("iview") ?? "DM").toUpperCase();
+    const view = (params.get("iview") ?? "LVDS").toUpperCase();
 
     setTarjetaId(card);
     setNroAsset(asset);
